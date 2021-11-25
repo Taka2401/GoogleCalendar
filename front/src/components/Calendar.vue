@@ -13,29 +13,18 @@
 </template>
 
 <script>
-import axios from "axios";
-import CalendarDetails from './CalendarDetails.vue';
+import { mapGetters, mapActions } from 'vuex';
+import CalendarDetails from "./CalendarDetails.vue";
 
 export default {
-  data() {
-    return {
-      events: [],
-    };
+  computed: {
+    ...mapGetters('events', ['events']),
   },
   components: {
     CalendarDetails,
   },
   methods: {
-    fetchEvents() {
-      axios
-        .get("http://localhost:3000/events")
-        .then((res) => {
-          this.events = res.data;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    },
+    ...mapActions('events', ['fetchEvents'])
   },
 };
 </script>
