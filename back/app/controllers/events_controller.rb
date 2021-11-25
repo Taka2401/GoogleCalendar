@@ -30,6 +30,13 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    # 指定したidのイベントデータを削除する
+    event = Event.find(params[:id])
+    event.destroy!
+    render json: event
+  end
+
   private
 
   def event_params
