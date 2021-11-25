@@ -20,6 +20,16 @@ class EventsController < ApplicationController
     end
   end
 
+  def update
+    # 指定したidのイベントデータの値を更新する
+    event = Event.find(params[:id])
+    if event.update(event_params)
+      render json: event
+    else
+      render json: event.errors, status: 422
+    end
+  end
+
   private
 
   def event_params
