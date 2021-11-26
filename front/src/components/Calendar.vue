@@ -18,7 +18,9 @@
         @change="fetchEvents"
         locale="ja-jp"
         :day-format="(timestamp) => new Date(timestamp.date).getDate()"
-        :month-format="(timestamp) => (new Date(timestamp.date).getMonth() + 1) + ' /'"
+        :month-format="
+          (timestamp) => new Date(timestamp.date).getMonth() + 1 + ' /'
+        "
         @click:event="showEvent"
       ></v-calendar>
     </v-sheet>
@@ -30,31 +32,31 @@
 </template>
 
 <script>
-import { format } from 'date-fns';
+import { format } from "date-fns";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
   data() {
     return {
-      value: format(new Date(), 'yyyy/MM/dd'),
-      dialogMessage: ''
-    }
+      value: format(new Date(), "yyyy/MM/dd"),
+      dialogMessage: "",
+    };
   },
   computed: {
     ...mapGetters("events", ["events"]),
     title() {
-      return format(new Date(this.value), 'yyyy年 M月');
-    }
+      return format(new Date(this.value), "yyyy年 M月");
+    },
   },
   methods: {
     ...mapActions("events", ["fetchEvents"]),
     setToday() {
-      this.value = format(new Date(), 'yyyy/MM/dd')
+      this.value = format(new Date(), "yyyy/MM/dd");
     },
     showEvent({ event }) {
       // showEventが呼ばれたら変数に予定名を代入
-      this.dialogMessage = event.name
-    }
-  }
+      this.dialogMessage = event.name;
+    },
+  },
 };
 </script>
