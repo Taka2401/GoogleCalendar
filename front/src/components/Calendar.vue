@@ -22,6 +22,10 @@
         @click:event="showEvent"
       ></v-calendar>
     </v-sheet>
+
+    <v-dialog :value="dialogMessage !== ''">
+      <h1>{{ dialogMessage }}</h1>
+    </v-dialog>
   </div>
 </template>
 
@@ -32,7 +36,8 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
-      value: format(new Date(), 'yyyy/MM/dd')
+      value: format(new Date(), 'yyyy/MM/dd'),
+      dialogMessage: ''
     }
   },
   computed: {
@@ -47,7 +52,8 @@ export default {
       this.value = format(new Date(), 'yyyy/MM/dd')
     },
     showEvent({ event }) {
-      alert(event.name)
+      // showEventが呼ばれたら変数に予定名を代入
+      this.dialogMessage = event.name
     }
   }
 };
