@@ -13,18 +13,18 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions } from "vuex";
 import CalendarDetails from "./CalendarDetails.vue";
 
 export default {
   computed: {
-    ...mapGetters('events', ['events']),
+    ...mapGetters("events", ["events"]),
   },
   components: {
     CalendarDetails,
   },
   methods: {
-    ...mapActions('events', ['fetchEvents'])
+    ...mapActions("events", ["fetchEvents"]),
   },
 };
 </script>
