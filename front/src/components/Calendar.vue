@@ -19,6 +19,7 @@
         locale="ja-jp"
         :day-format="(timestamp) => new Date(timestamp.date).getDate()"
         :month-format="(timestamp) => (new Date(timestamp.date).getMonth() + 1) + ' /'"
+        @click:event="showEvent"
       ></v-calendar>
     </v-sheet>
   </div>
@@ -44,7 +45,10 @@ export default {
     ...mapActions("events", ["fetchEvents"]),
     setToday() {
       this.value = format(new Date(), 'yyyy/MM/dd')
+    },
+    showEvent({ event }) {
+      alert(event.name)
     }
-  },
+  }
 };
 </script>
