@@ -30,7 +30,8 @@
       </DialogSection>
     </v-card-text>
     <v-card-actions class="d-flex justify-end">
-      <v-btn @click="submit">保存</v-btn>
+      <!-- isInvalidがtrueの場合disabledによってボタンが無効化される。 -->
+      <v-btn :disabled="isInvalid" @click="submit">保存</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -45,6 +46,7 @@ import TimeForm from './TimeForm';
 import TextForm from './TextForm';
 import ColorForm from './ColorForm';
 import CheckBox from './CheckBox';
+import { isGreaterEndThanStart } from '../functions/datetime';
 
 export default {
   mixins: [validationMixin],
@@ -73,6 +75,13 @@ export default {
   },
   computed: {
     ...mapGetters('events', ['event']),
+    isInvalidDatetime() {
+      return !isGreaterEndThanStart(this.startDate, this.startTime, this.endDate, this.endTime, this.allDay);
+    },
+    isInvalid() {
+      // バリデーションがマッチしない場合trueを返す
+      return this.$v.$invalid || this.isInvalidDatetime;
+    },
   },
   created() {
     // eventステートの属性の値を代入
@@ -92,6 +101,9 @@ export default {
       this.setEvent(null);
     },
     submit() {
+      if (this.isInvalid) {
+        return
+      }
       // POSTリクエストを送る際のパラメータ
       const params = {
         name: this.name,
