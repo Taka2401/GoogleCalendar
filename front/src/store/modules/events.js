@@ -1,5 +1,5 @@
 import axios from "axios";
-import { format } from 'date-fns';
+import { serializeEvent } from '../../functions/serializers';
 
 const apiUrl = "http://localhost:3000";
 
@@ -10,26 +10,30 @@ const state = {
 };
 
 const getters = {
-  events: (state) =>
-    state.events.map((event) => {
-      return {
-        ...event,
-        start: new Date(event.start),
-        end: new Date(event.end),
-      };
-    }),
-  event: (state) =>
-    state.event
-      ? {
-          ...state.event,
-          start: new Date(state.event.start),
-          end: new Date(state.event.end),
+  // events: (state) =>
+  //   state.events.map((event) => {
+  //     return {
+  //       ...event,
+  //       start: new Date(event.start),
+  //       end: new Date(event.end),
+  //     };
+  //   }),
+  // event: (state) =>
+  //   state.event
+  //     ? {
+  //         ...state.event,
+  //         start: new Date(state.event.start),
+  //         end: new Date(state.event.end),
 
-          // カレンダーでクリックした時の日付を文字列に変換して代入
-          startDate: format(new Date(state.event.start), 'yyyy/MM/dd'),
-          endDate: format(new Date(state.event.end), 'yyyy/MM/dd'),
-        }
-      : null,
+  //         // カレンダーでクリックした時の日付を文字列に変換して代入
+  //         startDate: format(new Date(state.event.start), 'yyyy/MM/dd'),
+  //         endDate: format(new Date(state.event.end), 'yyyy/MM/dd'),
+  //       }
+  //     : null,
+
+  // serializers.jsにあるserializeEventメソッドで、上記の処理を行う
+  events: state => state.events.map(event => serializeEvent(event)),
+  event: state => serializeEvent(state.event),
   isEditMode: (state) => state.isEditMode,
 };
 
