@@ -6,6 +6,8 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.datetime :end, null: false
       t.boolean :timed, default: true
 
+      t.text :description
+      t.string :color
       t.timestamps
     end
   end

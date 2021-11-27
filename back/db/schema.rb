@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 2021_11_23_093712) do
     t.datetime "start", null: false
     t.datetime "end", null: false
     t.boolean "timed", default: true
+    t.text "description"
+    t.string "color"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
