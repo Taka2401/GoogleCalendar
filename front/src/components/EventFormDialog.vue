@@ -37,6 +37,8 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import { validationMixin } from 'vuelidate';
+import { required } from 'vuelidate/lib/validators';
 import DialogSection from './DialogSection';
 import DateForm from './DateForm';
 import TimeForm from './TimeForm';
@@ -45,6 +47,7 @@ import ColorForm from './ColorForm';
 import CheckBox from './CheckBox';
 
 export default {
+  mixins: [validationMixin],
   components: {
     DialogSection,
     DateForm,
@@ -63,6 +66,11 @@ export default {
     color: '',
     allDay: false,
   }),
+  validations: {
+    name: { required },
+    startDate: { required },
+    endDate: { required },
+  },
   computed: {
     ...mapGetters('events', ['event']),
   },
