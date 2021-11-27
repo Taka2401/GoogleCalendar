@@ -17,29 +17,29 @@
     </v-card-text>
     <v-card-text>
       <DialogSection icon="mdi-card-text-outline">
-        {{ event.description || 'no description' }}
+        {{ event.description || "no description" }}
       </DialogSection>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-import DialogSection from './DialogSection';
+import { mapGetters, mapActions } from "vuex";
+import DialogSection from "./DialogSection";
 
 export default {
   components: {
     DialogSection,
   },
-  name: 'EventDetailDialog',
+  name: "EventDetailDialog",
   computed: {
-    ...mapGetters('events', ['event']),
+    ...mapGetters("events", ["event"]),
   },
   methods: {
-    ...mapActions('events', ['setEvent']),
+    ...mapActions("events", ["setEvent"]),
     closeDialog() {
       this.setEvent(null);
     },
-  }
+  },
 };
 </script>
