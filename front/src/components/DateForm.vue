@@ -4,7 +4,9 @@
     <!-- activatorスロットからonというプロパティを取得 -->
     <template v-slot:activator="{ on }">
     <!-- クリック時にactivatorスロットを経由してメニューが表示される -->
-      <v-btn text v-on="on">{{ value || '日付を選択' }}</v-btn>
+      <v-btn text v-on="on" :class="{ 'red lighten-4 rounded' : isError}">
+        {{ value || '日付を選択' }}
+      </v-btn>
     </template>
 
     <!-- propsで受け取ったvalueは変更不可のため、$emitで変更する -->
@@ -20,6 +22,6 @@
 
 <script>
 export default {
-  props: ['value'],
+  props: ['value', 'isError'],
 }
 </script>
