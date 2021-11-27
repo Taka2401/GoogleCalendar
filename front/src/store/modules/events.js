@@ -1,5 +1,5 @@
 import axios from "axios";
-import { serializeEvent } from '../../functions/serializers';
+import { serializeEvent } from "../../functions/serializers";
 
 const apiUrl = "http://localhost:3000";
 
@@ -32,8 +32,8 @@ const getters = {
   //     : null,
 
   // serializers.jsにあるserializeEventメソッドで、上記の処理を行う
-  events: state => state.events.map(event => serializeEvent(event)),
-  event: state => serializeEvent(state.event),
+  events: (state) => state.events.map((event) => serializeEvent(event)),
+  event: (state) => serializeEvent(state.event),
   isEditMode: (state) => state.isEditMode,
 };
 
@@ -56,7 +56,7 @@ const actions = {
     // eventデータをパラメータとしてPOSTリクエストを送る
     const res = await axios.post(`${apiUrl}/events`, event);
     // レスポンスデータをappendEventミューテーションに渡す
-    commit('appendEvent', res.data);
+    commit("appendEvent", res.data);
   },
   setEvent({ commit }, event) {
     commit("setEvent", event);

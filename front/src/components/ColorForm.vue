@@ -21,6 +21,6 @@
 
 <script>
 export default {
-  props: ['value'],
-}
+  props: ["value"],
+};
 </script>

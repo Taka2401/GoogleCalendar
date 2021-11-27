@@ -38,7 +38,7 @@ import { format } from "date-fns";
 import { mapGetters, mapActions } from "vuex";
 import EventDetailDialog from "./EventDetailDialog";
 import EventFormDialog from "./EventFormDialog";
-import { getDefaultStartAndEnd } from '../functions/datetime';
+import { getDefaultStartAndEnd } from "../functions/datetime";
 
 export default {
   components: {

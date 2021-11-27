@@ -13,7 +13,8 @@
     <v-card-text>
       <DialogSection icon="mdi-clock-time-three-outline">
         <!-- event.timedの値がtrueなら開始・終了時間を表示 -->
-        {{ event.startDate }} {{ event.timed ? event.startTime : '' }} ~ {{ event.endDate }} {{ event.timed ? event.endTime : '' }}
+        {{ event.startDate }} {{ event.timed ? event.startTime : "" }} ~
+        {{ event.endDate }} {{ event.timed ? event.endTime : "" }}
       </DialogSection>
     </v-card-text>
     <v-card-text>

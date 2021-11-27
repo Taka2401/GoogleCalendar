@@ -40,16 +40,16 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-import { validationMixin } from 'vuelidate';
-import { required } from 'vuelidate/lib/validators';
-import DialogSection from './DialogSection';
-import DateForm from './DateForm';
-import TimeForm from './TimeForm';
-import TextForm from './TextForm';
-import ColorForm from './ColorForm';
-import CheckBox from './CheckBox';
-import { isGreaterEndThanStart } from '../functions/datetime';
+import { mapGetters, mapActions } from "vuex";
+import { validationMixin } from "vuelidate";
+import { required } from "vuelidate/lib/validators";
+import DialogSection from "./DialogSection";
+import DateForm from "./DateForm";
+import TimeForm from "./TimeForm";
+import TextForm from "./TextForm";
+import ColorForm from "./ColorForm";
+import CheckBox from "./CheckBox";
+import { isGreaterEndThanStart } from "../functions/datetime";
 
 export default {
   mixins: [validationMixin],
@@ -62,13 +62,13 @@ export default {
     CheckBox,
   },
   data: () => ({
-    name: '',
+    name: "",
     startDate: null,
     startTime: null,
     endDate: null,
     endTime: null,
-    description: '',
-    color: '',
+    description: "",
+    color: "",
     allDay: false,
   }),
   validations: {
@@ -77,9 +77,15 @@ export default {
     endDate: { required },
   },
   computed: {
-    ...mapGetters('events', ['event']),
+    ...mapGetters("events", ["event"]),
     isInvalidDatetime() {
-      return !isGreaterEndThanStart(this.startDate, this.startTime, this.endDate, this.endTime, this.allDay);
+      return !isGreaterEndThanStart(
+        this.startDate,
+        this.startTime,
+        this.endDate,
+        this.endTime,
+        this.allDay
+      );
     },
     isInvalid() {
       // バリデーションがマッチしない場合trueを返す
@@ -98,20 +104,20 @@ export default {
     this.allDay = !this.event.timed;
   },
   methods: {
-    ...mapActions('events', ['setEvent', 'setEditMode', 'createEvent']),
+    ...mapActions("events", ["setEvent", "setEditMode", "createEvent"]),
     closeDialog() {
       this.setEditMode(false);
       this.setEvent(null);
     },
     submit() {
       if (this.isInvalid) {
-        return
+        return;
       }
       // POSTリクエストを送る際のパラメータ
       const params = {
         name: this.name,
-        start: `${this.startDate} ${this.startTime || ''}`,
-        end: `${this.endDate} ${this.endTime || ''}`,
+        start: `${this.startDate} ${this.startTime || ""}`,
+        end: `${this.endDate} ${this.endTime || ""}`,
         description: this.description,
         color: this.color,
         timed: !this.allDay,
