@@ -5,7 +5,7 @@
     <template v-slot:activator="{ on }">
     <!-- クリック時にactivatorスロットを経由してメニューが表示される -->
       <v-btn text v-on="on" :class="{ 'red lighten-4 rounded' : isError}">
-        {{ value || '日付を選択' }}
+        {{ formatDateToJa(value) || '日付を選択' }}
       </v-btn>
     </template>
 
@@ -21,7 +21,12 @@
 </template>
 
 <script>
+import { formatDateToJa } from '../functions/datetime';
+
 export default {
   props: ['value', 'isError'],
+  methods: {
+    formatDateToJa,
+  },
 }
 </script>
