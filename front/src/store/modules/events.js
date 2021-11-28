@@ -31,7 +31,7 @@ const getters = {
   //       }
   //     : null,
 
-  // serializers.jsにあるserializeEventメソッドで、上記の処理を行う
+  // serializers.jsにあるserializeEventメソッドで、カレンダーの日付を文字列に変換して代入を行う。
   events: (state) => state.events.map((event) => serializeEvent(event)),
   event: (state) => serializeEvent(state.event),
   isEditMode: (state) => state.isEditMode,
@@ -44,6 +44,10 @@ const mutations = {
   // state.events配列にeventデータを追加
   appendEvent: (state, event) => (state.events = [...state.events, event]),
   setEvent: (state, event) => (state.event = event),
+
+  // eventsステートから削除した予定だけ除く処理
+  removeEvent: (state, event) => (state.events = state.events.filter(e => e.id !== event.id)),
+  resetEvent: state => (state.event = null),
   setEditMode: (state, bool) => (state.isEditMode = bool),
 };
 
@@ -57,6 +61,12 @@ const actions = {
     const res = await axios.post(`${apiUrl}/events`, event);
     // レスポンスデータをappendEventミューテーションに渡す
     commit("appendEvent", res.data);
+  },
+  async deleteEvent({ commit }, id) {
+    // 引数に予定のidを受け取り、削除APIを叩いて予定を削除
+    const res = await axios.delete(`${apiUrl}/events/${id}`);
+    commit('removeEvent', res.data);
+    commit('resetEvent');
   },
   setEvent({ commit }, event) {
     commit("setEvent", event);
