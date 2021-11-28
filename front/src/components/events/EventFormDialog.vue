@@ -45,13 +45,13 @@ import { mapGetters, mapActions } from "vuex";
 import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
 
-import DialogSection from '../layouts/DialogSection';
-import DateForm from '../forms/DateForm';
-import TimeForm from '../forms/TimeForm';
-import TextForm from '../forms/TextForm';
-import ColorForm from '../forms/ColorForm';
-import CheckBox from '../forms/CheckBox';
-import { isGreaterEndThanStart } from '../../functions/datetime'
+import DialogSection from "../layouts/DialogSection";
+import DateForm from "../forms/DateForm";
+import TimeForm from "../forms/TimeForm";
+import TextForm from "../forms/TextForm";
+import ColorForm from "../forms/ColorForm";
+import CheckBox from "../forms/CheckBox";
+import { isGreaterEndThanStart } from "../../functions/datetime";
 
 export default {
   mixins: [validationMixin],
@@ -108,7 +108,12 @@ export default {
     this.allDay = !this.event.timed;
   },
   methods: {
-    ...mapActions('events', ['setEvent', 'setEditMode', 'createEvent', 'updateEvent']),
+    ...mapActions("events", [
+      "setEvent",
+      "setEditMode",
+      "createEvent",
+      "updateEvent",
+    ]),
     closeDialog() {
       this.setEditMode(false);
       this.setEvent(null);

@@ -33,7 +33,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import DialogSection from '../layouts/DialogSection';
+import DialogSection from "../layouts/DialogSection";
 
 export default {
   components: {
@@ -44,7 +44,7 @@ export default {
     ...mapGetters("events", ["event"]),
   },
   methods: {
-    ...mapActions('events', ['setEvent', 'deleteEvent', 'setEditMode']),
+    ...mapActions("events", ["setEvent", "deleteEvent", "setEditMode"]),
     closeDialog() {
       this.setEvent(null);
     },

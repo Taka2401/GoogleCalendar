@@ -46,11 +46,13 @@ const mutations = {
   setEvent: (state, event) => (state.event = event),
 
   // eventsステートから削除した予定だけ除く処理
-  removeEvent: (state, event) => (state.events = state.events.filter(e => e.id !== event.id)),
-  resetEvent: state => (state.event = null),
+  removeEvent: (state, event) =>
+    (state.events = state.events.filter((e) => e.id !== event.id)),
+  resetEvent: (state) => (state.event = null),
 
   // eventsステートの中にある更新前のデータを更新後のデータに入れ替える処理
-  updateEvent: (state, event) => (state.events = state.events.map(e => (e.id === event.id ? event : e))),
+  updateEvent: (state, event) =>
+    (state.events = state.events.map((e) => (e.id === event.id ? event : e))),
   setEditMode: (state, bool) => (state.isEditMode = bool),
 };
 
@@ -68,12 +70,12 @@ const actions = {
   async deleteEvent({ commit }, id) {
     // 引数に予定のidを受け取り、削除APIを叩いて予定を削除
     const res = await axios.delete(`${apiUrl}/events/${id}`);
-    commit('removeEvent', res.data);
-    commit('resetEvent');
+    commit("removeEvent", res.data);
+    commit("resetEvent");
   },
   async updateEvent({ commit }, event) {
     const res = await axios.put(`${apiUrl}/events/${event.id}`, event);
-    commit('updateEvent', res.data);
+    commit("updateEvent", res.data);
   },
   setEvent({ commit }, event) {
     commit("setEvent", event);
