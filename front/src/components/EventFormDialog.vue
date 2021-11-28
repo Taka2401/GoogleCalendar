@@ -33,6 +33,7 @@
       </DialogSection>
     </v-card-text>
     <v-card-actions class="d-flex justify-end">
+      <v-btn @click="cancel">キャンセル</v-btn>
       <!-- isInvalidがtrueの場合disabledによってボタンが無効化される。 -->
       <v-btn :disabled="isInvalid" @click="submit">保存</v-btn>
     </v-card-actions>
@@ -110,6 +111,12 @@ export default {
     closeDialog() {
       this.setEditMode(false);
       this.setEvent(null);
+    },
+    cancel() {
+      this.setEditMode(false);
+      if (!this.event.id) {
+        this.setEvent(null);
+      }
     },
     submit() {
       if (this.isInvalid) {
