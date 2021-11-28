@@ -12,24 +12,24 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
-  props: ['value'],
+  props: ["value"],
   computed: {
-    ...mapGetters('calendars', ['calendars']),
+    ...mapGetters("calendars", ["calendars"]),
     calendar: {
       // プロパティが呼び出された時に返す値を定義
       get() {
         // 予定作成時ならデフォルトでcalendarsの最初のデータとして返す
         if (this.value === undefined || this.value === null) {
-          this.$emit('input', this.calendars[0]);
+          this.$emit("input", this.calendars[0]);
           return this.calendars[0];
         }
         return this.value;
       },
       set(value) {
-        this.$emit('input', value);
+        this.$emit("input", value);
       },
     },
   },

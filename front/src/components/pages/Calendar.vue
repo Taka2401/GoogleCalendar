@@ -26,8 +26,10 @@
           :events="events"
           @change="fetchEvents"
           locale="ja-jp"
-          :day-format="timestamp => new Date(timestamp.date).getDate()"
-          :month-format="timestamp => new Date(timestamp.date).getMonth() + 1 + ' /'"
+          :day-format="(timestamp) => new Date(timestamp.date).getDate()"
+          :month-format="
+            (timestamp) => new Date(timestamp.date).getMonth() + 1 + ' /'
+          "
           @click:event="showEvent"
           @click:day="initEvent"
         ></v-calendar>
@@ -46,7 +48,7 @@ import { format } from "date-fns";
 import { mapGetters, mapActions } from "vuex";
 import EventDetailDialog from "../events/EventDetailDialog";
 import EventFormDialog from "../events/EventFormDialog";
-import CalendarList from '../calendars/CalendarList';
+import CalendarList from "../calendars/CalendarList";
 import { getDefaultStartAndEnd } from "../../functions/datetime";
 
 export default {

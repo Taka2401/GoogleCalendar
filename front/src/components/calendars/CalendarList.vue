@@ -26,15 +26,19 @@
     </v-list-item-group>
 
     <!-- calendarステートの値がnullではない時にCalendarFormDialogコンポーネントをダイアログ表示 -->
-    <v-dialog :value="calendar !== null" @click:outside="closeDialog" width="600">
+    <v-dialog
+      :value="calendar !== null"
+      @click:outside="closeDialog"
+      width="600"
+    >
       <CalendarFormDialog v-if="calendar !== null" />
     </v-dialog>
   </v-list>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
-import CalendarFormDialog from './CalendarFormDialog';
+import { mapActions, mapGetters } from "vuex";
+import CalendarFormDialog from "./CalendarFormDialog";
 
 export default {
   components: { CalendarFormDialog },
@@ -42,8 +46,8 @@ export default {
     selectedItem: null,
   }),
   computed: {
-    ...mapGetters('calendars', ['calendars']),
-    ...mapGetters('calendars', ['calendars', 'calendar']),
+    ...mapGetters("calendars", ["calendars"]),
+    ...mapGetters("calendars", ["calendars", "calendar"]),
   },
   created() {
     // コンポーネントが呼び出された時にAPIからカレンダーデータを取得しcalendarsステートにデータを保持
@@ -51,10 +55,10 @@ export default {
   },
   methods: {
     // Vuexストアで定義したfetchCalendarsアクションを呼び出し
-    ...mapActions('calendars', ['fetchCalendars', 'setCalendar']),
+    ...mapActions("calendars", ["fetchCalendars", "setCalendar"]),
     initCalendar() {
       this.setCalendar({
-        name: '',
+        name: "",
         visibility: true,
       });
     },

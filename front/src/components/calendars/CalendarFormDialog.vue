@@ -16,32 +16,32 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-import { validationMixin } from 'vuelidate';
-import { required } from 'vuelidate/lib/validators';
-import DialogSection from '../layouts/DialogSection';
-import ColorForm from '../forms/ColorForm';
+import { mapActions, mapGetters } from "vuex";
+import { validationMixin } from "vuelidate";
+import { required } from "vuelidate/lib/validators";
+import DialogSection from "../layouts/DialogSection";
+import ColorForm from "../forms/ColorForm";
 
 export default {
-  name: 'CalendarFormDialog',
+  name: "CalendarFormDialog",
   mixins: [validationMixin],
   components: { DialogSection, ColorForm },
   data: () => ({
-    name: '',
+    name: "",
     color: null,
   }),
   validations: {
     name: { required },
   },
   computed: {
-    ...mapGetters('calendars', ['calendar']),
+    ...mapGetters("calendars", ["calendar"]),
   },
   created() {
     this.name = this.calendar.name;
     this.color = this.calendar.color;
   },
   methods: {
-    ...mapActions('calendars', ['createCalendar', 'setCalendar']),
+    ...mapActions("calendars", ["createCalendar", "setCalendar"]),
     close() {
       this.setCalendar(null);
     },

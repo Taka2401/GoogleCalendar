@@ -55,7 +55,7 @@ import TimeForm from "../forms/TimeForm";
 import TextForm from "../forms/TextForm";
 import ColorForm from "../forms/ColorForm";
 import CheckBox from "../forms/CheckBox";
-import CalendarSelectForm from '../forms/CalendarSelectForm';
+import CalendarSelectForm from "../forms/CalendarSelectForm";
 import { isGreaterEndThanStart } from "../../functions/datetime";
 
 export default {

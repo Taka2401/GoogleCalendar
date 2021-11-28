@@ -29,7 +29,9 @@
       </DialogSection>
     </v-card-text>
     <v-card-text>
-      <DialogSection icon="mdi-calendar">{{ event.calendar.name }}</DialogSection>
+      <DialogSection icon="mdi-calendar">{{
+        event.calendar.name
+      }}</DialogSection>
     </v-card-text>
   </v-card>
 </template>
