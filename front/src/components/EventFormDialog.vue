@@ -94,17 +94,19 @@ export default {
   },
   created() {
     // eventステートの属性の値を代入
+    this.name = this.event.name;
     this.startDate = this.event.startDate;
     this.startTime = this.event.startTime;
     this.endDate = this.event.endDate;
     this.endTime = this.event.endTime;
+    this.description = this.event.description;
     this.color = this.event.color;
 
     // 時間指定があればtrue、なければfalseの値が入る
     this.allDay = !this.event.timed;
   },
   methods: {
-    ...mapActions("events", ["setEvent", "setEditMode", "createEvent"]),
+    ...mapActions('events', ['setEvent', 'setEditMode', 'createEvent', 'updateEvent']),
     closeDialog() {
       this.setEditMode(false);
       this.setEvent(null);
@@ -115,6 +117,8 @@ export default {
       }
       // POSTリクエストを送る際のパラメータ
       const params = {
+        // eventステートにid属性があればid: 1みたいにparamsのキーとして指定される
+        ...this.event,
         name: this.name,
         start: `${this.startDate} ${this.startTime || ""}`,
         end: `${this.endDate} ${this.endTime || ""}`,
@@ -122,7 +126,11 @@ export default {
         color: this.color,
         timed: !this.allDay,
       };
-      this.createEvent(params);
+      if (params.id) {
+        this.updateEvent(params);
+      } else {
+        this.createEvent(params);
+      }
       this.closeDialog();
     },
   },
