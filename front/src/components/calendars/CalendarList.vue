@@ -31,6 +31,7 @@
             </template>
             <v-list>
               <v-list-item @click="edit(calendar)">編集</v-list-item>
+              <v-list-item @click="del(calendar)">削除</v-list-item>
             </v-list>
           </v-menu>
         </v-list-item-action>
@@ -67,7 +68,7 @@ export default {
   },
   methods: {
     // Vuexストアで定義したfetchCalendarsアクションを呼び出し
-    ...mapActions("calendars", ["fetchCalendars", "setCalendar"]),
+    ...mapActions('calendars', ['fetchCalendars', 'deleteCalendar', 'setCalendar']),
     initCalendar() {
       this.setCalendar({
         name: "",
@@ -79,6 +80,9 @@ export default {
     },
     edit(calendar) {
       this.setCalendar(calendar);
+    },
+    del(calendar) {
+      this.deleteCalendar(calendar.id);
     },
   },
 };
