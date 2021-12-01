@@ -68,7 +68,11 @@ export default {
   },
   methods: {
     // Vuexストアで定義したfetchCalendarsアクションを呼び出し
-    ...mapActions('calendars', ['fetchCalendars', 'deleteCalendar', 'setCalendar']),
+    ...mapActions("calendars", [
+      "fetchCalendars",
+      "deleteCalendar",
+      "setCalendar",
+    ]),
     initCalendar() {
       this.setCalendar({
         name: "",
