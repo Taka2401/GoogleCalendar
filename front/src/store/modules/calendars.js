@@ -44,12 +44,12 @@ const actions = {
     commit("updateCalendar", response.data);
 
     // updateCalendarアクションが呼ばれたら、fetchEventsアクションも呼び出して予定データを再度取得
-    dispatch('events/fetchEvents', null, { root: true });
+    dispatch("events/fetchEvents", null, { root: true });
   },
   async deleteCalendar({ dispatch, commit }, id) {
     const response = await axios.delete(`${apiUrl}/calendars/${id}`);
     commit("removeCalendar", response.data);
-    dispatch('events/fetchEvents', null, { root: true });
+    dispatch("events/fetchEvents", null, { root: true });
   },
   setCalendar({ commit }, calendar) {
     commit("setCalendar", calendar);
