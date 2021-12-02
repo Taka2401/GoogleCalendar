@@ -31,8 +31,8 @@ const getters = {
   //       }
   //     : null,
 
-  // serializers.jsにあるserializeEventメソッドで、カレンダーの日付を文字列に変換して代入を行う。
-  events: (state) => state.events.map((event) => serializeEvent(event)),
+  // カレンダーのvisibilityがtrueのデータだけ残した配列を返す
+  events: state => state.events.filter(event => event.calendar.visibility).map(event => serializeEvent(event)),
   event: (state) => serializeEvent(state.event),
   isEditMode: (state) => state.isEditMode,
 };

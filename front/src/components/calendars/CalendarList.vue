@@ -18,6 +18,7 @@
             v-model="calendar.visibility"
             :color="calendar.color"
             :label="calendar.name"
+            @click="toggleVisibility(calendar)"
             class="pb-2"
             hide-details="true"
           ></v-checkbox>
@@ -68,11 +69,7 @@ export default {
   },
   methods: {
     // Vuexストアで定義したfetchCalendarsアクションを呼び出し
-    ...mapActions("calendars", [
-      "fetchCalendars",
-      "deleteCalendar",
-      "setCalendar",
-    ]),
+    ...mapActions('calendars', ['fetchCalendars', 'updateCalendar', 'deleteCalendar', 'setCalendar']),
     initCalendar() {
       this.setCalendar({
         name: "",
@@ -87,6 +84,9 @@ export default {
     },
     del(calendar) {
       this.deleteCalendar(calendar.id);
+    },
+    toggleVisibility(calendar) {
+      this.updateCalendar(calendar);
     },
   },
 };
