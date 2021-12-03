@@ -7,6 +7,7 @@ const state = {
   events: [],
   event: null,
   isEditMode: false,
+  clickedDate: null,
 };
 
 const getters = {
@@ -38,6 +39,7 @@ const getters = {
       .map((event) => serializeEvent(event)),
   event: (state) => serializeEvent(state.event),
   isEditMode: (state) => state.isEditMode,
+  clickedDate: state => state.clickedDate,
 };
 
 const mutations = {
@@ -57,6 +59,7 @@ const mutations = {
   updateEvent: (state, event) =>
     (state.events = state.events.map((e) => (e.id === event.id ? event : e))),
   setEditMode: (state, bool) => (state.isEditMode = bool),
+  setClickedDate: (state, date) => (state.clickedDate = date),
 };
 
 const actions = {
@@ -85,6 +88,9 @@ const actions = {
   },
   setEditMode({ commit }, bool) {
     commit("setEditMode", bool);
+  },
+  setClickedDate({ commit }, date) {
+    commit('setClickedDate', date);
   },
 };
 
