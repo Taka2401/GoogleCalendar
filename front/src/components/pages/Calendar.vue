@@ -42,7 +42,11 @@
       <EventDetailDialog v-if="event !== null && !isEditMode" />
       <EventFormDialog v-if="event !== null && isEditMode" />
     </v-dialog>
-     <v-dialog :value="clickedDate !== null" @click:outside="closeDialog" width="600">
+    <v-dialog
+      :value="clickedDate !== null"
+      @click:outside="closeDialog"
+      width="600"
+    >
       <v-card light>hoge</v-card>
     </v-dialog>
   </div>
@@ -68,13 +72,18 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('events', ['events', 'event', 'isEditMode', 'clickedDate']),
+    ...mapGetters("events", ["events", "event", "isEditMode", "clickedDate"]),
     title() {
       return format(new Date(this.value), "yyyy年 M月");
     },
   },
   methods: {
-    ...mapActions('events', ['fetchEvents', 'setEvent', 'setEditMode', 'setClickedDate']),
+    ...mapActions("events", [
+      "fetchEvents",
+      "setEvent",
+      "setEditMode",
+      "setClickedDate",
+    ]),
     setToday() {
       this.value = format(new Date(), "yyyy/MM/dd");
     },
@@ -97,7 +106,7 @@ export default {
       this.setEditMode(true);
     },
     showDayEvents({ date }) {
-      date = date.replace(/-/g, '/');
+      date = date.replace(/-/g, "/");
       this.setClickedDate(date);
     },
   },
