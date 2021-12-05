@@ -1,5 +1,5 @@
 import axios from "axios";
-import { isDateWithinInterval } from '../../functions/datetime';
+import { isDateWithinInterval } from "../../functions/datetime";
 import { serializeEvent } from "../../functions/serializers";
 
 const apiUrl = "http://localhost:3000";
@@ -39,10 +39,12 @@ const getters = {
       .filter((event) => event.calendar.visibility)
       .map((event) => serializeEvent(event)),
   event: (state) => serializeEvent(state.event),
-  dayEvents: state =>
+  dayEvents: (state) =>
     state.events
-      .map(event => serializeEvent(event))
-      .filter(event => isDateWithinInterval(state.clickedDate, event.startDate, event.endDate)),
+      .map((event) => serializeEvent(event))
+      .filter((event) =>
+        isDateWithinInterval(state.clickedDate, event.startDate, event.endDate)
+      ),
   isEditMode: (state) => state.isEditMode,
   clickedDate: (state) => state.clickedDate,
 };

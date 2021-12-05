@@ -13,7 +13,11 @@
       <v-list>
         <v-list-item v-for="event in dayEvents" :key="event.id">
           <v-list-item-content class="pa-0">
-            <v-btn depressed :color="event.color" class="white--text justify-start">
+            <v-btn
+              depressed
+              :color="event.color"
+              class="white--text justify-start"
+            >
               <template v-if="event.timed">{{ event.startTime }}</template>
               {{ event.name }}
             </v-btn>
@@ -25,16 +29,16 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-import { formatDateToJa } from '../../functions/datetime';
+import { mapActions, mapGetters } from "vuex";
+import { formatDateToJa } from "../../functions/datetime";
 
 export default {
-  name: 'DayEventList',
+  name: "DayEventList",
   computed: {
-    ...mapGetters('events', ['dayEvents', 'clickedDate']),
+    ...mapGetters("events", ["dayEvents", "clickedDate"]),
   },
   methods: {
-    ...mapActions('events', ['setClickedDate']),
+    ...mapActions("events", ["setClickedDate"]),
     formatDateToJa,
     closeDialog() {
       this.setClickedDate(null);

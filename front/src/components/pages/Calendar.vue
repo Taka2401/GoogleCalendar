@@ -57,7 +57,7 @@ import { format } from "date-fns";
 import { mapGetters, mapActions } from "vuex";
 import EventDetailDialog from "../events/EventDetailDialog";
 import EventFormDialog from "../events/EventFormDialog";
-import DayEventList from '../events/DayEventList';
+import DayEventList from "../events/DayEventList";
 import CalendarList from "../calendars/CalendarList";
 import { getDefaultStartAndEnd } from "../../functions/datetime";
 
