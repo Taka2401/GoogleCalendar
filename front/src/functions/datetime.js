@@ -54,3 +54,10 @@ export const isDateWithinInterval = (date, startDate, endDate) => {
     end: new Date(endDate),
   });
 };
+
+export const compareDates = (a, b) => {
+  // 日付の比較を行う
+  if (a.start < b.start) return -1;
+  if (a.start > b.start) return 1;
+  return 0;
+}
